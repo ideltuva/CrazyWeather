@@ -15,12 +15,8 @@ public class Weather {
     @SerializedName("values")
     public double[] values;
 
-    public Weather(String name, String levelType, String level, String unit, double[] values) {
-        this.name = name;
-        this.levelType = levelType;
-        this.level = level;
-        this.unit = unit;
-        this.values = values;
+    public Weather() {
+
     }
 
     public String getName() {

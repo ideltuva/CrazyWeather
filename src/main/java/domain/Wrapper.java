@@ -9,8 +9,7 @@ public class Wrapper {
     @SerializedName("timeSeries")
     public Period[] periods;
 
-    public Wrapper(Period[] periods) {
-        this.periods = periods;
+    public Wrapper() {
     }
 
     public Period[] getPeriods() {
@@ -20,6 +19,10 @@ public class Wrapper {
     public void setPeriods(Period[] periods) {
         this.periods = periods;
     }
+
+
+
+
 
 
 }

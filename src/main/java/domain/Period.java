@@ -14,6 +14,11 @@ public class Period {
         this.weathers = weathers;
     }
 
+    public Period() {
+
+    }
+
+
     public String getValidTime() {
         return validTime;
     }

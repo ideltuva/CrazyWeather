@@ -1,8 +1,10 @@
 package service;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import domain.Period;
+import domain.Weather;
 import domain.Wrapper;
 import org.springframework.stereotype.Component;
 
@@ -56,27 +58,22 @@ public class JSONParser {
 
     }
 
+    public static Wrapper getWrapper() throws IOException {
+        final GsonBuilder gsonBuilder = new GsonBuilder();
 
-    public static Period[] getWeatherData() throws IOException {
-        Gson gson = new Gson();
+        gsonBuilder.registerTypeAdapter(Wrapper.class, new WrapperDeserializer());
+        gsonBuilder.registerTypeAdapter(Period.class, new PeriodDeserializer());
+        gsonBuilder.registerTypeAdapter(Weather.class, new WeatherDeserializer());
 
-        String jsonString = getResponse(URL);
-        Wrapper wrapper = gson.fromJson(jsonString, Wrapper.class);
+        final Gson gson = gsonBuilder.create();
 
-        return wrapper.getPeriods();
+        // Parse JSON to Java
+        final Wrapper wrapper = gson.fromJson(getResponse(URL), Wrapper.class);
+
+        return wrapper;
     }
 
-    public static List<Period> getPeriod() throws IOException {
-        final List<Period> rows = Arrays.asList(getWeatherData());
 
-        //SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
-
-        List<Period> result = rows.stream()
-                .filter(r -> "2019-05-16T06:00:00Z".equals(r.validTime))
-                .collect(Collectors.toList());
-
-        return result;
-    }
 
 
 
