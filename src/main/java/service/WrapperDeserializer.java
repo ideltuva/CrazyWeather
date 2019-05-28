@@ -13,12 +13,6 @@ import java.util.Map;
 
 public class WrapperDeserializer implements JsonDeserializer<Wrapper> {
 
-    public final ThreadLocal<Map<String, Period>> cache = new ThreadLocal<Map<String, Period>>() {
-        @Override
-        protected Map<String, Period> initialValue() {
-            return new HashMap<>();
-        }
-    };
 
     @Override
     public Wrapper deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) {
