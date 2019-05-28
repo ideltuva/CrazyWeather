@@ -8,7 +8,7 @@ import domain.Weather;
 
 import java.lang.reflect.Type;
 
-public class WeatherDeserializer implements JsonDeserializer {
+public class WeatherDeserializer implements JsonDeserializer<Weather> {
 
     @Override
     public Weather deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) {
